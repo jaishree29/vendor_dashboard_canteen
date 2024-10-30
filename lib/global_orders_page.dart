@@ -1,14 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:vendor_digital_canteen/order_card.dart';
 import 'order_details_page.dart'; // Import the OrderDetailsPage
 
 class GlobalOrdersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Orders'),
-        centerTitle: true,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(100.0), // Set the desired height here
+        child: AppBar(
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.center, // Center align horizontally
+            children: [
+              Text(
+                'Orders',
+                style: TextStyle(fontSize: 24), // Customize the title text style
+              ),
+              SizedBox(height: 8), // Space between title and subtitle
+              Text(
+                'Track and Complete Orders',
+                style: TextStyle(fontSize: 18), // Customize the subtitle text style
+              ),
+            ],
+          ),
+          centerTitle: true,
+        ),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('global_orders').snapshots(),
@@ -26,19 +43,10 @@ class GlobalOrdersScreen extends StatelessWidget {
               itemCount: orders.length,
               itemBuilder: (context, index) {
                 final order = orders[index].data() as Map<String, dynamic>;
-                return ListTile(
-                  leading:CircleAvatar(backgroundColor: Colors.grey,radius: 20,),
-                  title: Text('Order ID: ${order['userOrderId']}'),
-                  subtitle: Text('Total Price: \₹${order['totalPrice']}'),
-                  onTap: () {
-                    // Navigate to the Order Details page
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => OrderDetailsPage(order: order),
-                      ),
-                    );
-                  },
+                final orderId = orders[index].id; // Access the document ID here
+                return OrderCard(
+                  order: order,
+                  orderId: orderId, // Pass the document ID as a separate parameter
                 );
               },
             );

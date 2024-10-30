@@ -16,4 +16,18 @@ class OrderService {
       print('Error updating order status to $status: $e');
     }
   }
+
+  // Function to delete an order by orderId
+  Future<void> deleteOrder(String orderId) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('global_orders')
+          .doc(orderId)
+          .delete();
+
+      print('Order $orderId deleted successfully.');
+    } catch (e) {
+      print('Error deleting order $orderId: $e');
+    }
+  }
 }
