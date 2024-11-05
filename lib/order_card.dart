@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'custom_button.dart';
 import 'order_service.dart';
+import 'order_summary_card.dart';
+import 'order_summary_page.dart';
 
 class OrderCard extends StatelessWidget {
   final Map<String, dynamic> order;
@@ -16,14 +18,14 @@ class OrderCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(12),
       margin: EdgeInsets.all(8),
-      height: 200,
-     // color: Colors.red,
+      height: 210,
+
       child: Column(
         children: [
           Row(
             children: [
               Container(
-                height: 125,
+                height: 130,
                 width: 105,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10), // Set the desired radius here
@@ -39,8 +41,7 @@ class OrderCard extends StatelessWidget {
               Expanded(
                 child: Container(
                   padding: EdgeInsets.only(left: 4),
-                  height: 125,
-
+                  height: 130,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -60,14 +61,16 @@ class OrderCard extends StatelessWidget {
 
                       SizedBox(height: 5),
                       Text(
-                        "Order's ID: ${order['userOrderId']}",
+                        "Order-ID: ${order['userOrderId']}",
                         style: TextStyle(
                           color: Color(0xFF707070),
+
                         ),
                       ),
 
+                      SizedBox(height: 3,),
                       CustomButton(
-                        height: 45.0,
+                        height: 40.0,
                         width: double.infinity,
                         text: "Cancel Order",
                         color: Colors.white70,
@@ -123,6 +126,7 @@ class OrderCard extends StatelessWidget {
                   borderColor: Colors.green,
                   onPressed: () {
                     _orderService.updateOrderStatus(order['userId'], order['userOrderId'], 'Order Delivered');
+
                   },
                 ),
               ),

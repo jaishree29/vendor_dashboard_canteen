@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:vendor_digital_canteen/order_card.dart';
-import 'order_details_page.dart'; // Import the OrderDetailsPage
+import 'order_details_page.dart';
+import 'order_summary_card.dart';
+import 'order_summary_page.dart'; // Import the OrderDetailsPage
 
 class GlobalOrdersScreen extends StatelessWidget {
   @override
@@ -53,6 +55,17 @@ class GlobalOrdersScreen extends StatelessWidget {
           }
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Navigate to OrderSummaryPage when FAB is pressed
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => OrderSummaryPage()),
+          );
+        },
+        child: Icon(Icons.add),
+        tooltip: 'Order Summary',
+      ),
     );
+
   }
 }
