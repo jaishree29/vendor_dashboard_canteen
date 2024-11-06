@@ -30,4 +30,17 @@ class OrderService {
       print('Error deleting order $orderId: $e');
     }
   }
+  Future<void> updateDeliveryStatus(String orderId, String status) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('global_orders')
+          .doc(orderId)
+          .update({'deliveryStatus': status});
+
+      print('Order  updated successfully.');
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
 }

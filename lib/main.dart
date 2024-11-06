@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:vendor_digital_canteen/orders/new_order_page.dart';
 import 'firebase_options.dart';
-import 'global_orders_page.dart'; // Import the generated firebase_options.dart file
+import 'orders/global_orders_page.dart'; // Import the generated firebase_options.dart file
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure that Firebase is initialized before running the app
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  GlobalOrdersScreen(),
+      home:  NewOrderPage(),
     );
   }
 }

@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import 'custom_button.dart';
-import 'order_service.dart';
-import 'order_summary_card.dart';
-import 'order_summary_page.dart';
+import '../../button/custom_button.dart';
+import '../service/order_service.dart';
+import '../order_summary/order_summary_card.dart';
+import '../order_summary/order_summary_page.dart';
 
 class OrderCard extends StatelessWidget {
   final Map<String, dynamic> order;
@@ -52,7 +52,7 @@ class OrderCard extends StatelessWidget {
                       ),),
                       SizedBox(height: 3),
                       Text(
-                        "Ordered by: Lochan Chugh",
+                        "Ordered by: ${order['userName']}",
                         style: TextStyle(
                           color: Color(0xFF707070),
                           // Remove the '#' and add '0xFF' at the beginning

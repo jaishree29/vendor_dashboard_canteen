@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:vendor_digital_canteen/order_card.dart';
-import 'order_details_page.dart';
-import 'order_summary_card.dart';
-import 'order_summary_page.dart'; // Import the OrderDetailsPage
+import 'package:vendor_digital_canteen/orders/widgets/order_card.dart';
+import 'new_order_page.dart';
+import '../order_details_page.dart';
+import 'order_summary/order_summary_card.dart';
+import 'order_summary/order_summary_page.dart'; // Import the OrderDetailsPage
 
 class GlobalOrdersScreen extends StatelessWidget {
   @override
@@ -58,8 +59,11 @@ class GlobalOrdersScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Navigate to OrderSummaryPage when FAB is pressed
+          // Navigator.of(context).push(
+          //   MaterialPageRoute(builder: (context) => OrderSummaryPage()),
+          // );
           Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => OrderSummaryPage()),
+            MaterialPageRoute(builder: (context) => NewOrderPage()),
           );
         },
         child: Icon(Icons.add),
