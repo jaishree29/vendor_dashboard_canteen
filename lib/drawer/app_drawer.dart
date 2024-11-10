@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vendor_digital_canteen/orders/global_orders_page.dart';
+import 'package:vendor_digital_canteen/orders/delivered_orders.dart';
+
 import 'package:vendor_digital_canteen/orders/order_summary/order_summary_page.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -48,17 +49,10 @@ class AppDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.settings),
-            title: Text('Settings'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.history_toggle_off),
-            title: Text('All Orders'),
+            title: Text('Delivered Orders'),
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => GlobalOrdersScreen()),
+                MaterialPageRoute(builder: (context) => DeliveredOrdersPage()),
               );
             },
           ),
