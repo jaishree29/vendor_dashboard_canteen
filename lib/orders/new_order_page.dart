@@ -61,7 +61,7 @@ class NewOrderPage extends StatelessWidget {
                         child: StreamBuilder<QuerySnapshot>(
                           stream: FirebaseFirestore.instance
                               .collection('global_orders')
-                              .where('deliveryStatus', isEqualTo: 'Delivered') // Filter for delivered orders
+                              .where('deliveryStatus', isEqualTo: 'Order ready') // Filter for delivered orders
                               .snapshots(),
                           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
                             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -78,9 +78,20 @@ class NewOrderPage extends StatelessWidget {
                               itemCount: orders.length,
                               itemBuilder: (BuildContext context, int index) {
                                 var order = orders[index];
+                                bool isPickingUp = order['notification'] == 'User is picking up the order!';
+
                                 return Container(
                                   width: 100,
                                   margin: EdgeInsets.only(right: 10),
+                                  padding: EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: isPickingUp ? Colors.green.withOpacity(0.2) : Colors.transparent, // Green if picking up, transparent otherwise
+                                    border: Border.all(
+                                      color: isPickingUp ? Colors.green : Colors.grey.shade300,
+                                      width: isPickingUp ? 2 : 1, // Thicker green border if picking up, default otherwise
+                                    ),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -102,12 +113,12 @@ class NewOrderPage extends StatelessWidget {
                                       ),
                                       SizedBox(height: 5),
                                       Text(
-                                        order['userName'] ?? 'Unknown',  // Default to 'Unknown' if userName is null
+                                        order['userName'] ?? 'Unknown', // Default to 'Unknown' if userName is null
                                         style: TextStyle(fontSize: 12),
                                         textAlign: TextAlign.center,
                                       ),
                                       Text(
-                                        order['userPhone'] ?? 'Not provided',  // Default to 'Not provided' if userPhone is null
+                                        order['userPhone'] ?? 'Not provided', // Default to 'Not provided' if userPhone is null
                                         style: TextStyle(fontSize: 12),
                                         textAlign: TextAlign.center,
                                       ),
@@ -119,6 +130,7 @@ class NewOrderPage extends StatelessWidget {
                           },
                         ),
                       ),
+
                       SizedBox(height: 15,),
                       Text("Pending Orders"),
                       Divider(thickness: 1,),

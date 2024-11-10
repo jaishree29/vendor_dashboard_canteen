@@ -96,9 +96,13 @@ class MyCard extends StatelessWidget {
                           SizedBox(width: 3,),
                           Flexible(
                             child: GestureDetector(
-                              onTap: () {
-                                _orderService.updateDeliveryStatus(orderId, 'Delivered');
+                              onTap: () async {
+                                await Future.wait([
+                                  _orderService.updateDeliveryStatus(orderId, 'Order ready'),
+                                  _orderService.updateOrderStatus(order['userId'], order['userOrderId'], 'Order is Ready'),  // Replace `someOtherMethod` with your actual method
+                                ]);
                               },
+
                               child: Container(
                                 height: 40,
                                // width: double.infinity,

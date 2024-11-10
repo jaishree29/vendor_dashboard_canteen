@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../../button/custom_button.dart';
 import '../service/order_service.dart';
-import '../order_summary/order_summary_card.dart';
-import '../order_summary/order_summary_page.dart';
 
 class OrderCard extends StatelessWidget {
   final Map<String, dynamic> order;
@@ -55,7 +53,6 @@ class OrderCard extends StatelessWidget {
                         "Ordered by: ${order['userName']}",
                         style: TextStyle(
                           color: Color(0xFF707070),
-                          // Remove the '#' and add '0xFF' at the beginning
                         ),
                       ),
 
@@ -64,7 +61,6 @@ class OrderCard extends StatelessWidget {
                         "Order-ID: ${order['userOrderId']}",
                         style: TextStyle(
                           color: Color(0xFF707070),
-
                         ),
                       ),
 
