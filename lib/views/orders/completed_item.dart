@@ -5,7 +5,7 @@ class CompletedItem extends StatelessWidget {
   final String userName;
   final String userPhone;
   final bool isPickingUp;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   const CompletedItem({
     super.key,
@@ -13,7 +13,7 @@ class CompletedItem extends StatelessWidget {
     required this.userName,
     required this.userPhone,
     required this.isPickingUp,
-    required this.onTap,
+    this.onTap,
   });
 
   @override

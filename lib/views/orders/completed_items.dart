@@ -29,10 +29,12 @@ class CompletedItems extends StatelessWidget {
                     return const Center(child: CircularProgressIndicator());
                   }
                   if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                    print("No completed orders");
                     return const Center(child: Text("No completed orders"));
                   }
 
                   final orders = snapshot.data!.docs;
+                  print("Fetched ${orders.length} completed orders");
 
                   return ListView.builder(
                     scrollDirection: Axis.horizontal,
@@ -42,16 +44,18 @@ class CompletedItems extends StatelessWidget {
                       bool isPickingUp = order['notification'] ==
                           'User is picking up the order!';
 
+                      print("Order ${order.id}: isPickingUp = $isPickingUp");
+
                       return CompletedItem(
                         foodTitle: order['foodTitle'],
                         userName: order['userName'] ?? 'Unknown',
                         userPhone: order['userPhone'] ?? 'Not provided',
                         isPickingUp: isPickingUp,
-                        onTap: () => isPickingUp
+                        onTap: isPickingUp
                             ? () {
                                 _orderService.updateDeliveryStatus(
                                     order.id, 'Order Delivered');
-                                print("done ji");
+                                print("Order Delivered");
                               }
                             : null,
                       );
