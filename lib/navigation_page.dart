@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:vendor_digital_canteen/orders/delivered_orders.dart';
 import 'package:vendor_digital_canteen/orders/order_summary/order_summary_page.dart';
-import 'package:vendor_digital_canteen/profile/profile_page.dart';
 import 'package:vendor_digital_canteen/utils/constants/colors.dart';
 import 'package:vendor_digital_canteen/views/menu/menu_page.dart';
 import 'package:vendor_digital_canteen/views/orders/orders_page.dart';
+import 'package:vendor_digital_canteen/views/profile/profile_page.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({super.key});

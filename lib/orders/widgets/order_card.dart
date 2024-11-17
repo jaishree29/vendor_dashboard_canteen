@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../button/custom_button.dart';
+import '../../widgets/custom_button.dart';
 import '../service/order_service.dart';
 
 class OrderCard extends StatelessWidget {
